@@ -4,6 +4,8 @@ import leftArrowImg from './assets/leftarrow.png'
 import { useState } from 'react';
 import {levels, calculateImc, Level} from './helpers/imc'
 import GridItem from './components/GridItem';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -13,13 +15,18 @@ const App =() => {
   const [weightField, setWeightField] = useState<number>(0);
   const [toShow, setToShow] = useState<Level | null> (null);
 
+  const notify = ()=>{
+    toast.error("Preencha todos os campos!")
+}
 
   const handleCalculatebutton= ()=>{
     if(heightField && weightField){
       setToShow(calculateImc(heightField, weightField))
-    } else{ alert("Preencha todos os campos!")}
+    } else{
+       notify()
+      }
   }
-
+  
   const handleBackButton = () =>{
     setToShow(null);
     setHeightField(0);
@@ -74,6 +81,7 @@ const App =() => {
           }
         </div>
       </div>
+      <ToastContainer position="top-right"/>
     </div>
   );
 }
