@@ -49,7 +49,7 @@ const App =() => {
             <div className={styles.grid}>
               {levels.map((item, key) =>(
                <GridItem key={key} item={item}/>
-              ))}
+              ))} 
             </div>
         </div>
       </div>
